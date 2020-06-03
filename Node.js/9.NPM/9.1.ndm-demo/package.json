@@ -1,0 +1,16 @@
+{
+  "name": "9.1.ndm-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.9.17",
+    "underscore": "^1.10.2"
+  }
+}
