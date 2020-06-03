@@ -24,4 +24,5 @@ Javascript as a whole is single threaded. However it should be noted that the br
 Node's default package manager is called Npm. It is installed along with Node.js; npm is hosts thousands of free packages. These packages contain files to use Node modules. Modules are JavaScript libraries you can use in your project.
 
 [Official Npm page](https://www.npmjs.com/)
+
 [Basic Npm](./9.NPM/README.md)
