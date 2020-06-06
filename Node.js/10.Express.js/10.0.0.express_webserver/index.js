@@ -23,7 +23,7 @@ const courses = [
 ];
 
 // ## USE GET TO LOOK UP ##
-//
+// [START]
 // Define route on root
 app.get('/', (req, res) => {
     res.send('Hello World');
@@ -48,6 +48,7 @@ app.get('/api/courses/:id', (req, res) => {
     }
     res.send(course);
 });
+//[END]
 
 // ## USE POST TO CREATE ## 
 app.post('/api/courses/', (req, res) => {
@@ -58,8 +59,8 @@ app.post('/api/courses/', (req, res) => {
     // Input validation
     if (error) {
         // 400 Bad Request
-        res.status(400).send(result.error.details[0].message);
-        res.send('400 Bad Request')
+        res.status(404).send(error.details[0].message);
+        res.send('404 Bad Request')
         return;
     }
 
@@ -72,6 +73,7 @@ app.post('/api/courses/', (req, res) => {
     res.send(course);
 });
 
+// [START]
 // ## USE PUT TO UPDATE ##
 app.put('/api/courses/:id', (req, res) => {
     // Look up course with existing id
@@ -115,6 +117,7 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log('Listening on port ', port);
 });
+//[END]
 
 function validateCourse(course) {
     // Define schema with Joi
