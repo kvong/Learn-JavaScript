@@ -4,6 +4,9 @@ Node.js is a JavaScript runtime environment that operates on the server-side of 
 ## Why use Node.js?
 Node.js lets us perform operation on the server-side with JavaScript, which was originally only allowed on the client-side. This makes it easier to develop website as anyone interested in desigining mid-range websites only need to learn HTML, CSS, and JavaScript.
 
+## What role does Express.js play?
+Express help makes our code cleaner. Express has other features for processing HTTPS requests such as a templating engine that can return a webpage similar to Java JSP.
+
 ## Asynchronous
 All APIs of Node.js is asynchronous. That is, it's are non-blocking. General programming languages are typically synchronous, meaning it doesn't move to the next line of code until the current line has finished its execution. Node.js function call however, will move to the next line by executing the current line in a different thread. Once the function is finished executing, it will then return to the main thread.
 
