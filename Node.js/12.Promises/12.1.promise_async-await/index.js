@@ -25,7 +25,7 @@ displayCommits();
 
 console.log('After');
 
-// Async functions [START]
+// Functions that return promises [START]
 function getUser(id) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
