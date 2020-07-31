@@ -1,0 +1,19 @@
+[
+{"type": "Media" , "name": "Youtube" , "url": "https://www.youtube.com/" , "icon": "fab fa-youtube" , "logo": "youtube_logo.png" },
+{"type": "Coding" , "name": "GitHub" , "url": "https://github.com" , "icon": "fab fa-github" , "logo": "github_logo.png" },
+{"type": "Shopping" , "name": "Amazon" , "url": "https://www.amazon.com" , "icon": "fab fa-amazon" , "logo": "amazon_logo.png" },
+{"type": "Google" , "name": "Google Drive" , "url": "https://drive.google.com/drive/my-drive" , "icon": "fab fa-google-drive" , "logo": "google_logo.png" },
+{"type": "Coding" , "name": "GitHub Guide" , "url": "https://akrabat.com/the-beginners-guide-to-contributing-to-a-github-project/" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "Coding" , "name": "StackEdit" , "url": "https://stackedit.io/app#" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "Media" , "name": "Read Manga" , "url": "https://manganelo.com/bookmark" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "Google" , "name": "Gmail" , "url": "https://mail.google.com/mail/u/0/#inbox" , "icon": "fas fa-envelope" , "logo": "" },
+{"type": "Google" , "name": "Google Colab" , "url": "https://colab.research.google.com/notebooks/intro.ipynb#recent=true" , "icon": "fas fa-infinity" , "logo": "" },
+{"type": "Shopping" , "name": "Ebay" , "url": "https://www.ebay.com/" , "icon": "fas fa-shopping-cart" , "logo": "" },
+{"type": "School" , "name": "Canvas" , "url": "https://umsl.instructure.com/" , "icon": "fas fa-chalkboard-teacher" , "logo": "" },
+{"type": "School" , "name": "UMSL Email" , "url": "https://login.microsoftonline.com" , "icon": "fas fa-mail-bulk" , "logo": "" },
+{"type": "Coding" , "name": "CodeWar" , "url": "https://www.codewars.com/dashboard" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "School" , "name": "MyView" , "url": "https://myview.umsl.edu/psp/csprds/?cmd=login&languageCd=ENG&" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "Misc." , "name": "Font Awesome" , "url": "https://fontawesome.com/" , "icon": "fab fa-font-awesome" , "logo": "" },
+{"type": "Misc." , "name": "Router Login" , "url": "http://192.168.1.1" , "icon": "fas fa-bookmark" , "logo": "" },
+{"type": "Misc." , "name": "PDF Download Sites" , "url": "https://www.easepdf.com/topics/sites-like-library-genesis-pdf-ebooks.html" , "icon": "fas fa-bookmark" , "logo": "" }
+]

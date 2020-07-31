@@ -57,4 +57,3 @@ function getCommits(repo) {
     });
 }
 //[END]
-
