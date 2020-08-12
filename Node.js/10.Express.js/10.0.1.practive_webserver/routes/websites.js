@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Joi = require('joi');
 
 // Init data 
 const websites = [
@@ -28,6 +29,22 @@ router.post('/', (req, res) => {
         res.status(404).send('Request failed validation step');
         return;
     }
+    
+    // Create new website entry
+    const website = {
+        id: websites.length + 1,
+        url: req.body.url
+    };
+
+    // Add website to json object
+    websites.push(website);
+    res.send(website);
+});
+
+// Create new entry from form
+router.post('/new', (req, res) => {
+    console.log(req.body);
+    console.log(req.body.url);
     
     // Create new website entry
     const website = {
