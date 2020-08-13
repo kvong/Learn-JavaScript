@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7758fe50becd3bd8ee46e6fbbc54118f",
+    "revision": "60f18255bd39153fc0045cfbdb876067",
     "url": "/Learn-JavaScript/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Learn-JavaScript/static/css/2.11829350.chunk.css"
   },
   {
-    "revision": "82a0cb7d0f8f8c39a920",
-    "url": "/Learn-JavaScript/static/css/main.bebb91a6.chunk.css"
+    "revision": "e617536ddcd1bea641a7",
+    "url": "/Learn-JavaScript/static/css/main.1da1e800.chunk.css"
   },
   {
     "revision": "761800aaffbba9906122",
@@ -20,11 +20,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Learn-JavaScript/static/js/2.2e9c6de0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "82a0cb7d0f8f8c39a920",
-    "url": "/Learn-JavaScript/static/js/main.ee8c7688.chunk.js"
+    "revision": "e617536ddcd1bea641a7",
+    "url": "/Learn-JavaScript/static/js/main.90e38e1a.chunk.js"
   },
   {
     "revision": "87720e7b572950fd61f0",
     "url": "/Learn-JavaScript/static/js/runtime-main.effc5dbe.js"
+  },
+  {
+    "revision": "0648f7d093c1d527d053091d337b79c0",
+    "url": "/Learn-JavaScript/static/media/background.0648f7d0.png"
   }
 ]);
