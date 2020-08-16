@@ -28,8 +28,8 @@ export default class Pokepage extends React.Component{
     state = {
         name: '',
         pokeIndex: '',
-        prevIndex: '',
-        nextIndex: '',
+        prevIndex: null,
+        nextIndex: null,
         imageUrl: '',
         types: [],
         description: '',
@@ -42,26 +42,29 @@ export default class Pokepage extends React.Component{
             speed: '',
         },
         abilities: [],
+        offset: '',
     }
 
-    nextPokemon(){
-        this.setState({pokeIndex: this.nextPokeIndex});
+    nextPokemon = () => {
+        this.updatePokePage(this.state.nextIndex);
     }
 
-    prevPokemon(){
-        this.setState({pokeIndex: this.prevPokeIndex});
+    prevPokemon = () => {
+        this.updatePokePage(this.state.prevIndex);
     }
 
-    async componentDidMount(){
-        const pokeIndex = this.props.match.params.pokeIndex; 
+    async updatePokePage(index){
+        const pokeIndex = index;
+        console.log('PokePage: index = ' + index);
+        let offset = Math.floor(parseInt(this.state.pokeIndex)/24) * 24; 
+        console.log('PokePage: offset = ' + offset);
+        offset = offset.toString();
         const pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeIndex + '/';
         const speciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokeIndex + '/';
-        const imageUrl = "https://pokeres.bastionbot.org/images/pokemon/" + pokeIndex + ".png"
-
+        const imageUrl = "https://pokeres.bastionbot.org/images/pokemon/" + pokeIndex + ".png";
         const res = await axios.get(pokeUrl);
         const name = capitalizeName(res.data.name);
         const types = res.data.types;
-        console.log(types);
         let [hp, atk, def, spAtk, spDef, speed ] = '';
         res.data.stats.map((stat) => {
             switch(stat.stat.name){
@@ -89,13 +92,28 @@ export default class Pokepage extends React.Component{
         const abilities = res.data.abilities;
         
         let prevIndex = parseInt(pokeIndex) - 1
-        prevIndex = prevIndex.toString();
+        if (prevIndex < 1) {
+            prevIndex = null;
+        }
+        else{
+            prevIndex = prevIndex.toString();
+        }
+        
+        const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/");
         let nextIndex = parseInt(pokeIndex) + 1
-        nextIndex = nextIndex.toString();
+        if (nextIndex > parseInt(pokemon.data.count)){
+            nextIndex = null;
+        }
+        else{
+            nextIndex = nextIndex.toString();
+        }
+        console.log(nextIndex);
+        console.log(pokemon.data.count);
 
         this.setState({
             name: name,
             pokeIndex: pokeIndex,
+            prevIndex: prevIndex,
             nextIndex: nextIndex,
             imageUrl: imageUrl,
             types: types,
@@ -108,6 +126,79 @@ export default class Pokepage extends React.Component{
                 speed: speed,
             },
             abilities: abilities,
+            offset: offset,
+        });
+    }
+
+    async componentDidMount(){
+        const pokeIndex = this.props.match.params.pokeIndex; 
+        const offset = this.props.match.params.offset; 
+        const pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeIndex + '/';
+        const speciesUrl = "https://pokeapi.co/api/v2/pokemon-species/" + pokeIndex + '/';
+        const imageUrl = "https://pokeres.bastionbot.org/images/pokemon/" + pokeIndex + ".png"
+
+        const res = await axios.get(pokeUrl);
+        const name = capitalizeName(res.data.name);
+        const types = res.data.types;
+        let [hp, atk, def, spAtk, spDef, speed ] = '';
+        res.data.stats.map((stat) => {
+            switch(stat.stat.name){
+                case 'hp':
+                    hp = stat.base_stat;
+                    break;
+                case 'attack':
+                    atk = stat.base_stat;
+                    break;
+                case 'defense':
+                    def = stat.base_stat;
+                    break;
+                case 'special-attack':
+                    spAtk = stat.base_stat;
+                    break;
+                case 'special-defense':
+                    spDef = stat.base_stat;
+                    break;
+                case 'speed':
+                    speed = stat.base_stat;
+                    break;
+            }
+        });
+
+        const abilities = res.data.abilities;
+        
+        let prevIndex = parseInt(pokeIndex) - 1
+        if (prevIndex < 1) {
+            prevIndex = null;
+        }
+        else{
+            prevIndex = prevIndex.toString();
+        }
+        
+        const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/");
+        let nextIndex = parseInt(pokeIndex) + 1
+        if (nextIndex > parseInt(pokemon.data.count)){
+            nextIndex = null;
+        }
+        else{
+            nextIndex = nextIndex.toString();
+        }
+        this.setState({
+            name: name,
+            pokeIndex: pokeIndex,
+            prevIndex: prevIndex,
+            nextIndex: nextIndex,
+            imageUrl: imageUrl,
+            types: types,
+            stats: {
+                hp: hp,
+                atk: atk,
+                def: def,
+                spAtk: spAtk,
+                spDef: spDef,
+                speed: speed,
+            },
+            abilities: abilities,
+            offset: offset,
         });
     }
 
@@ -115,28 +206,28 @@ export default class Pokepage extends React.Component{
         return (
             <div className="container">
                 <div className="row">
-                    <div className="py-lg-5 px-5 col-lg-3 col-md-6 col-sm-9 border bg-light ">
+                    <div className="py-lg-5 px-4 py-3 col-lg-3 col-md-6 col-sm-9 border bg-light ">
                         <h2>{this.state.name}</h2>
                         <img src={this.state.imageUrl} alt= {this.state.name} width="150em" height="150em"></img>
                     </div>  
-                    <div className="py-lg-5 px-5 col-lg-3 col-md-6 col-sm-9 border bg-light ">
-                        <h3>Type: </h3>
+                    <div className="py-lg-5 p-3 col-lg-3 col-md-6 col-sm-9 border bg-light ">
+                        <h4>Type: </h4>
                         <ul>
                             {this.state.types.map(type => {
-                                return <li className="badge badge-pill px-3 mr-1" key={type.type.name} style={{backgroundColor: `#${TYPE_COLORS[type.type.name]}`}}>{capitalizeName(type.type.name)}</li>
+                                return <li className="badge badge-pill px-3 m-1" key={type.type.name} style={{backgroundColor: `#${TYPE_COLORS[type.type.name]}`, fontSize: 14}}>{capitalizeName(type.type.name)}</li>
                             })}
                         </ul>
                     </div>  
-                    <div className="py-lg-5 px-5 col-lg-3 col-md-6 col-sm-9 border bg-light ">
-                        <h3>Ability: </h3>
+                    <div className="py-lg-5 p-3 col-lg-3 col-md-6 col-sm-9 border bg-light ">
+                        <h4>Ability: </h4>
                         <ul>
                         {this.state.abilities.map(ability => {
                             return <li key={ability.ability.name}>{capitalizeName(ability.ability['name'])}</li>
                         })}
                         </ul>
                     </div>  
-                    <div className="py-lg-5 px-5 col-lg-3 col-md-6 col-sm-9 border bg-light ">
-                        <h3>Stats: </h3>
+                    <div className="py-lg-5 p-3 col-lg-3 col-md-6 col-sm-9 border bg-light ">
+                        <h4>Base Stats: </h4>
                         <ul>
                             <li> HP:    {this.state.stats.hp} </li>
                             <li> Attack:  {this.state.stats.atk} </li>
@@ -147,9 +238,28 @@ export default class Pokepage extends React.Component{
                         </ul>
                     </div>  
                 </div>
-                <Link to='/'>
+                <Link to={{
+                    pathname: `/pokemon/${this.state.offset}/`,
+                        aboutProps: {
+                            offset: `${this.state.offset}`,
+                        }
+                }}>
                     <button>Back to PokeDex</button>
                 </Link>
+                { this.state.prevIndex ?
+                    <Link to={{
+                        pathname: `/pokemon/${this.state.offset}/${this.state.prevIndex}/`,
+                    }}>
+                        <button onClick={this.prevPokemon}>Prev</button>
+                    </Link> : <span></span>
+                }
+                { this.state.nextIndex ?
+                    <Link to={{
+                        pathname: `/pokemon/${this.state.offset}/${this.state.nextIndex}/`,
+                    }}>
+                        <button onClick={this.nextPokemon}>Next</button>
+                    </Link> : <span></span>
+                }
             </div>
         );
     }

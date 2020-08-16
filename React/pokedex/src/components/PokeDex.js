@@ -6,7 +6,7 @@ export default class Pokedex extends React.Component{
         return (
             <div>
                 <div className='container'>
-                    <Pokelist />
+                    <Pokelist offset={this.props.match.params.offset} />
                 </div>
             </div>
         );
