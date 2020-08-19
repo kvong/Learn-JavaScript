@@ -16,9 +16,7 @@ export default class Pokecard extends React.Component{
         const capName = capitalizeName(name);
         const urlSplit = url.split('/');
         const pokeIndex = urlSplit[urlSplit.length - 2]
-        console.log(url);
         const imageUrl = "https://pokeres.bastionbot.org/images/pokemon/" + pokeIndex + ".png"
-        console.log(pokeIndex);
         this.setState({name: capName, imageUrl: imageUrl, pokeIndex: pokeIndex, offset: offset})
     };
 

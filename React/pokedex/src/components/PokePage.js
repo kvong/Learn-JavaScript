@@ -56,7 +56,13 @@ export default class Pokepage extends React.Component{
     async updatePokePage(index){
         const pokeIndex = index;
         console.log('PokePage: index = ' + index);
-        let offset = Math.floor(parseInt(this.state.pokeIndex)/24) * 24; 
+        let offset = 0;
+        if (parseInt(index) % 24 == 0) {
+            offset = Math.floor((parseInt(pokeIndex) - 1)/24) * 24; 
+        }
+        else{
+            offset = Math.floor(parseInt(pokeIndex)/24) * 24; 
+        }
         console.log('PokePage: offset = ' + offset);
         offset = offset.toString();
         const pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeIndex + '/';
@@ -107,8 +113,6 @@ export default class Pokepage extends React.Component{
         else{
             nextIndex = nextIndex.toString();
         }
-        console.log(nextIndex);
-        console.log(pokemon.data.count);
 
         this.setState({
             name: name,
