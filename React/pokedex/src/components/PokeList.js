@@ -3,6 +3,8 @@ import axios from 'axios';
 import Pokecard from './PokeCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const POKEMON_COUNT = 894;
+
 export default class Pokelist extends React.Component{
     state = {
         pokemon: null,
@@ -48,12 +50,20 @@ export default class Pokelist extends React.Component{
             <div>
                 <div className='row'>
                         {this.state.pokemon.map((pokemon) => {
-                            return (
-                                <Pokecard key={pokemon.name} 
-                                    name={pokemon.name} 
-                                    url={pokemon.url}
-                                    offset={this.state.offset}
-                                />);
+                            let urlSplit = pokemon.url.split('/');
+                            let pokeIndex = parseInt(urlSplit[urlSplit.length - 2]);
+
+                            if (pokeIndex > POKEMON_COUNT) {
+                                return;
+                            }
+                            else{
+                                return (
+                                    <Pokecard key={pokemon.name} 
+                                        name={pokemon.name} 
+                                        url={pokemon.url}
+                                        offset={this.state.offset}
+                                    />);
+                            }
                         })}
                 </div>
                 {this.state.prev ?  <button className='bg-danger text-white px-3' onClick={this.prevPage}>Prev</button> : <div></div>}

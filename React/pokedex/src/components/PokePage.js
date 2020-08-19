@@ -24,6 +24,8 @@ const TYPE_COLORS = {
     fairy : 'D685AD'
 };
 
+const POKEMON_COUNT = 894;
+
 export default class Pokepage extends React.Component{
     state = {
         name: '',
@@ -105,9 +107,8 @@ export default class Pokepage extends React.Component{
             prevIndex = prevIndex.toString();
         }
         
-        const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/");
         let nextIndex = parseInt(pokeIndex) + 1
-        if (nextIndex > parseInt(pokemon.data.count)){
+        if (nextIndex > POKEMON_COUNT){
             nextIndex = null;
         }
         else{
@@ -178,9 +179,8 @@ export default class Pokepage extends React.Component{
             prevIndex = prevIndex.toString();
         }
         
-        const pokemon = await axios.get("https://pokeapi.co/api/v2/pokemon/");
         let nextIndex = parseInt(pokeIndex) + 1
-        if (nextIndex > parseInt(pokemon.data.count)){
+        if (nextIndex > parseInt(POKEMON_COUNT)){
             nextIndex = null;
         }
         else{
@@ -218,7 +218,7 @@ export default class Pokepage extends React.Component{
                         <h4>Type: </h4>
                         <ul>
                             {this.state.types.map(type => {
-                                return <li className="badge badge-pill px-3 m-1" key={type.type.name} style={{backgroundColor: `#${TYPE_COLORS[type.type.name]}`, fontSize: 14}}>{capitalizeName(type.type.name)}</li>
+                                return <li className="badge badge-pill px-3 py-1 m-1" key={type.type.name} style={{backgroundColor: `#${TYPE_COLORS[type.type.name]}`, fontSize: 14}}>{capitalizeName(type.type.name)}</li>
                             })}
                         </ul>
                     </div>  
@@ -248,20 +248,20 @@ export default class Pokepage extends React.Component{
                             offset: `${this.state.offset}`,
                         }
                 }}>
-                    <button>Back to PokeDex</button>
+                    <button className='bg-danger text-white px-3'>Back to PokeDex</button>
                 </Link>
                 { this.state.prevIndex ?
                     <Link to={{
                         pathname: `/pokemon/${this.state.offset}/${this.state.prevIndex}/`,
                     }}>
-                        <button onClick={this.prevPokemon}>Prev</button>
+                        <button className='bg-danger text-white px-3' onClick={this.prevPokemon}>Prev</button>
                     </Link> : <span></span>
                 }
                 { this.state.nextIndex ?
                     <Link to={{
                         pathname: `/pokemon/${this.state.offset}/${this.state.nextIndex}/`,
                     }}>
-                        <button onClick={this.nextPokemon}>Next</button>
+                        <button className='bg-danger text-white px-3' onClick={this.nextPokemon}>Next</button>
                     </Link> : <span></span>
                 }
             </div>

@@ -25,8 +25,7 @@ export default class Pokecard extends React.Component{
             <div className='col-lg-2 col-md-3 col-sm-6 border bg-light p-4'>
                 <Link to={`/pokemon/${this.state.offset}/${this.state.pokeIndex}`}>
                     <img src={this.state.imageUrl} alt= {this.state.name} width="125em" height="125em"></img>
-                    <br />
-                    <b >{this.state.name}</b>
+                    <b className='align-middle'><span>#{this.state.pokeIndex}. {this.state.name}</span></b>
                 </Link>
             </div>
         );
